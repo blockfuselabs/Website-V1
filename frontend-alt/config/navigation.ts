@@ -18,8 +18,8 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "Academy", href: "/training" },
-  { label: "Hire Engineers", href: "/talent" },
+  { label: "Academy", href: "/academy" },
+  { label: "Hire Engineers", href: "/hire-engineers" },
   { label: "Engineering", href: "/engineering" },
   {
     label: "Events",
@@ -59,7 +59,7 @@ export const navItems: NavItem[] = [
   },
   {
     label: "Community",
-    href: "/team",
+    href: "/community",
     featured: {
       label: "Meet the Team",
       sub: "The mentors, reviewers, and engineers who run the programs.",
@@ -86,16 +86,16 @@ export const navItems: NavItem[] = [
 
 export const footerLinks = {
   programs: [
-    { label: "AI-Native Software Engineering", href: "/training" },
-    { label: "Applied AI Engineering", href: "/training" },
-    { label: "Blockchain Engineering", href: "/training" },
-    { label: "Team Training", href: "/training" },
+    { label: "AI-Native Software Engineering", href: "/academy" },
+    { label: "Applied AI Engineering", href: "/academy" },
+    { label: "Blockchain Engineering", href: "/academy" },
+    { label: "Team Training", href: "/academy" },
   ],
   organizations: [
-    { label: "Hire Blockfuse engineers", href: "/talent" },
-    { label: "Engage embedded engineers", href: "/talent" },
-    { label: "Sponsor a cohort", href: "/talent" },
-    { label: "Train your team", href: "/training" },
+    { label: "Hire Blockfuse engineers", href: "/hire-engineers" },
+    { label: "Engage embedded engineers", href: "/hire-engineers" },
+    { label: "Sponsor a cohort", href: "/hire-engineers" },
+    { label: "Train your team", href: "/academy" },
     { label: "Become a partner", href: "/contact" },
   ],
   community: [
