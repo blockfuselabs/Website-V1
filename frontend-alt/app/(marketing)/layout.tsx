@@ -1,5 +1,5 @@
-import Navigation from '@/app/components/Navigation'
-import AppFooter from '@/app/components/AppFooter'
+import Navigation from '@/app/(marketing)/_components/Navigation'
+import AppFooter from '@/app/(marketing)/_components/AppFooter'
 
 export default function MarketingLayout({
   children,
@@ -13,11 +13,11 @@ export default function MarketingLayout({
       <div style={{ flex: '0.5' }} className="hidden xl:block shrink-0 border-r border-dark-border h-full" />
 
       {/* Middle column — nav on top, scrollable content below */}
-      <div style={{ flex: '3' }} className="flex flex-col flex-1 h-full overflow-hidden">
+      <div style={{ flex: '3' }} className="flex flex-col flex-1 h-full overflow-hidden w-full">
         <Navigation />
 
         <div className="flex-1 overflow-y-auto hide-scrollbar">
-          <div className="px-6 py-8 sm:px-12 sm:py-10 md:px-16 md:py-12">
+          <div className="px-4 py-6 sm:px-6 sm:py-8 lg:px-12 lg:py-10 xl:px-16 xl:py-12">
             {children}
             <AppFooter />
           </div>

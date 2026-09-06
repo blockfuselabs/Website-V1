@@ -1,125 +1,163 @@
-export default function ContactPage() {
-  const contactMethods = [
-    {
-      icon: '✉️',
-      label: 'Email',
-      value: 'connect@blockfuselabs.com',
-      href: 'mailto:connect@blockfuselabs.com',
-      description: 'Best for detailed inquiries',
-    },
-    {
-      icon: '📞',
-      label: 'Phone',
-      value: '+1 (555) 123',
-      href: 'tel:+1-555-123',
-      description: 'Quick conversation',
-    },
-    {
-      icon: '📍',
-      label: 'Location',
-      value: 'Jos, Nigeria',
-      href: '#',
-      description: 'Visit our studio',
-    },
-  ]
+'use client'
 
-  const reasons = [
-    { title: 'Training Programs', description: 'Ask about Academy cohorts, custom programs' },
-    { title: 'Engineering Services', description: 'Discuss projects, protocols, systems' },
-    { title: 'Talent Hiring', description: 'Find verified engineers for your team' },
-    { title: 'Partnerships', description: 'Explore ecosystem collaborations' },
-  ]
+import React, { useState } from 'react'
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Copy,
+  Check,
+  ArrowRight,
+  ShieldCheck,
+} from 'lucide-react'
+
+export default function ContactPage() {
+  const [copiedField, setCopiedField] = useState<string | null>(null)
+
+  const handleCopy = (text: string, label: string) => {
+    navigator.clipboard.writeText(text)
+    setCopiedField(label)
+    setTimeout(() => setCopiedField(null), 2000)
+  }
 
   return (
-    <>
-      {/* Hero - Direct & Minimal Layout */}
-      <section className="min-h-[70vh] flex flex-col justify-center border-b border-dark-border mb-24 py-12">
-        <div className="max-w-6xl mx-auto w-full space-y-12">
-          {/* Main Heading - Centered */}
-          <div className="text-center space-y-6 max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent-pink/10 border border-accent-pink/30 text-[11px] font-mono tracking-widest text-accent-pink uppercase w-fit mx-auto">
-              <span className="h-1.5 w-1.5 bg-accent-pink inline-block animate-pulse" />
-              // LET'S WORK TOGETHER
+    <div className="relative overflow-hidden">
+
+      {/* ── Hero ────────────────────────────────────────────────────────── */}
+      <section className="min-h-[calc(100vh-6rem)] flex flex-col items-center justify-center text-center py-16 mb-12 relative z-10 border-b border-dark-border px-6">
+        <span className="text-[10px] font-mono tracking-widest text-text-muted uppercase block mb-4">
+          // CONTACT US
+        </span>
+        <h1 className="hero-title mb-6">
+          We'd love to hear from you
+        </h1>
+        <p className="text-sm sm:text-base text-text-secondary font-light max-w-2xl mx-auto leading-relaxed">
+          Whether you have questions about our training cohorts, studio engineering services, or ecosystem partnerships.
+        </p>
+      </section>
+
+      {/* ── Contact details ──────────────────────────────────────────────── */}
+      <section className="max-w-6xl mx-auto mb-20 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+          <div className="lg:col-span-5 space-y-4">
+            <span className="text-[10px] font-mono tracking-widest text-accent-purple uppercase block">
+              // CONTACT DETAILS
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-light tracking-tighter text-text-primary leading-[1.1]">
+              Feel Free to Get in <br className="hidden sm:block" /> Touch with us
+            </h2>
+            <p className="text-sm text-text-secondary font-light leading-relaxed pt-2">
+              We're glad to hear from you. Let's keep in touch for software engineering, protocol audits, or talent deployment.
+            </p>
+          </div>
+
+          <div className="lg:col-span-7 space-y-6">
+
+            {/* Location */}
+            <div className="glass-panel p-6 border border-dark-border hover-glow-card flex items-start gap-5 group">
+              <div className="w-12 h-12 border border-dark-border bg-black/40 flex items-center justify-center shrink-0 group-hover:border-accent-purple/50 transition-colors">
+                <MapPin className="w-5 h-5 text-accent-purple" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-base font-light text-text-primary group-hover:text-accent-purple transition-colors mb-1">
+                  Blockfuse Labs Headquarters
+                </h3>
+                <p className="text-xs text-text-secondary font-light leading-relaxed">
+                  Jos Innovation Hub, Plateau State, Nigeria
+                </p>
+              </div>
             </div>
 
-            <h1 className="text-6xl sm:text-7xl lg:text-7xl font-light leading-[1.05] tracking-tighter text-text-primary">
-              Let's
-              <br />
-              <span className="text-text-secondary">
-                talk
-              </span>
-            </h1>
-
-            <p className="text-lg text-text-secondary font-light leading-relaxed">
-              Training, hiring, engineering services, partnerships — or just say hello.
-            </p>
-          </div>
-
-          {/* Three Contact Cards - Side by Side */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto w-full">
-            {contactMethods.map((method, i) => (
-              <a
-                key={method.label}
-                href={method.href}
-                className="group p-8 border border-dark-border hover:border-accent-pink hover:bg-accent-pink/5 transition-all duration-300 relative text-center"
-              >
-                <div className="absolute top-0 left-0 w-0 h-[1px] bg-gradient-to-r from-accent-pink to-accent-purple group-hover:w-full transition-all duration-500" />
-
-                <div className="text-4xl mb-4">{method.icon}</div>
-
-                <p className="text-xs tracking-widest text-text-muted uppercase mb-2 font-normal">
-                  {method.label}
-                </p>
-
-                <p className="text-lg font-light text-text-primary mb-3 group-hover:text-accent-pink transition-colors break-all">
-                  {method.value}
-                </p>
-
-                <p className="text-xs text-text-secondary font-light">
-                  {method.description}
-                </p>
-              </a>
-            ))}
-          </div>
-
-          {/* Reason Cards */}
-          <div className="mt-16 pt-12 border-t border-dark-border">
-            <p className="text-xs tracking-widest text-text-muted uppercase font-normal mb-8 text-center">
-              Common Reasons to Reach Out
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {reasons.map((reason) => (
-                <div
-                  key={reason.title}
-                  className="group p-6 border border-dark-border/50 hover:border-accent-purple hover:bg-accent-purple/5 transition-all duration-300 relative"
-                >
-                  <div className="absolute top-0 left-0 w-0 h-[1px] bg-gradient-to-r from-accent-purple to-accent-pink group-hover:w-full transition-all duration-500" />
-
-                  <h3 className="text-sm font-light text-text-primary mb-2 group-hover:text-accent-purple transition-colors">
-                    {reason.title}
-                  </h3>
-                  <p className="text-xs text-text-secondary font-light leading-relaxed">
-                    {reason.description}
-                  </p>
+            {/* Phone */}
+            <div className="glass-panel p-6 border border-dark-border hover-glow-card flex items-center justify-between gap-5 group">
+              <div className="flex items-center gap-5">
+                <div className="w-12 h-12 border border-dark-border bg-black/40 flex items-center justify-center shrink-0 group-hover:border-accent-pink/50 transition-colors">
+                  <Phone className="w-5 h-5 text-accent-pink" />
                 </div>
-              ))}
+                <div>
+                  <h3 className="text-base font-mono font-light text-text-primary group-hover:text-accent-pink transition-colors">
+                    (+234) 8167-863-568
+                  </h3>
+                  <p className="text-xs text-text-muted font-mono tracking-widest uppercase">Direct Line & WhatsApp</p>
+                </div>
+              </div>
+              <button
+                onClick={() => handleCopy('+2348167863568', 'phone')}
+                className="p-2 border border-dark-border hover:border-accent-pink text-text-muted hover:text-accent-pink transition-colors text-xs font-mono"
+                title="Copy phone"
+              >
+                {copiedField === 'phone' ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+              </button>
             </div>
+
+            {/* Email */}
+            <div className="glass-panel p-6 border border-dark-border hover-glow-card flex items-center justify-between gap-5 group">
+              <div className="flex items-center gap-5">
+                <div className="w-12 h-12 border border-dark-border bg-black/40 flex items-center justify-center shrink-0 group-hover:border-accent-purple/50 transition-colors">
+                  <Mail className="w-5 h-5 text-accent-purple" />
+                </div>
+                <div>
+                  <a
+                    href="mailto:connect@blockfuselabs.com"
+                    className="text-base font-mono font-light text-text-primary group-hover:text-accent-purple transition-colors underline underline-offset-4 decoration-dark-border hover:decoration-accent-purple"
+                  >
+                    connect@blockfuselabs.com
+                  </a>
+                  <p className="text-xs text-text-muted font-mono tracking-widest uppercase">General Inquiries & Partnerships</p>
+                </div>
+              </div>
+              <button
+                onClick={() => handleCopy('connect@blockfuselabs.com', 'email')}
+                className="p-2 border border-dark-border hover:border-accent-purple text-text-muted hover:text-accent-purple transition-colors text-xs font-mono"
+                title="Copy email"
+              >
+                {copiedField === 'email' ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+              </button>
+            </div>
+
           </div>
+
         </div>
       </section>
 
-      {/* Response Time Info */}
-      <section className="text-center py-12 border-b border-dark-border">
-        <div className="space-y-3">
-          <p className="text-text-primary font-light text-lg">
-            We respond within <span className="text-accent-pink font-mono">24-48 hours</span>
-          </p>
-          <p className="text-text-secondary text-sm">
-            or faster for time-sensitive matters
-          </p>
+      {/* ── Workspace image ──────────────────────────────────────────────── */}
+      <section className="max-w-6xl mx-auto mb-24 relative z-10">
+        <div className="w-full aspect-[21/9] border border-dark-border bg-black/40 overflow-hidden relative glass-panel group">
+          <img
+            src="/engineering-hero.png"
+            alt="Blockfuse Labs Office"
+            className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-700"
+          />
+          
         </div>
       </section>
-    </>
+
+      {/* ── Protocol support banner ──────────────────────────────────────── */}
+      <section className="max-w-6xl mx-auto mb-24 relative z-10">
+        <div className="glass-panel p-10 sm:p-16 border border-dark-border text-center relative overflow-hidden hover-glow-card">
+          <div className="w-16 h-16 border border-dark-border bg-black/60 mx-auto flex items-center justify-center mb-6 group-hover:border-accent-purple/50 transition-colors">
+            <ShieldCheck className="w-8 h-8 text-accent-purple" />
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-light text-text-primary tracking-tighter max-w-2xl mx-auto mb-3 leading-tight">
+            Learn why top protocol teams rely on our engineering services
+          </h2>
+          <p className="text-xs font-mono text-text-muted uppercase tracking-widest mb-4">
+            Call anytime or reach out directly
+          </p>
+          <div className="text-2xl sm:text-3xl font-mono text-text-primary font-light mb-8">
+            +234-8167-863-568
+          </div>
+          <a
+            href="mailto:connect@blockfuselabs.com"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent-purple text-white text-xs font-mono tracking-widest uppercase hover:bg-accent-pink transition-colors font-semibold"
+          >
+            <span>Get in touch</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </section>
+
+    </div>
   )
 }
