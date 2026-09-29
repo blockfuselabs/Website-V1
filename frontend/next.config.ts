@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Self-contained server bundle (.next/standalone) for the cPanel deploy.
+  output: "standalone",
+
   turbopack: {
     root: __dirname,
   },
