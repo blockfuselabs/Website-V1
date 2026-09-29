@@ -72,7 +72,7 @@ export default async function AlumniPage() {
         >
           <div className="alumni-hero-panel relative min-w-0 overflow-hidden rounded-[1.5rem] bg-(--surface-2) max-[56rem]:w-full max-[56rem]:shrink-0 max-[56rem]:snap-start max-[56rem]:min-h-[26rem]">
             <Image
-              src="/brand/IMG_1604.JPG"
+              src="/community/WAL_2007.jpeg"
               alt="Blockfuse Labs alumnus"
               fill
               priority
@@ -80,10 +80,8 @@ export default async function AlumniPage() {
               className="object-cover object-[48%_top] saturate-[0.9] contrast-[1.03]"
             />
             <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-[linear-gradient(transparent,rgba(7,7,10,0.78))] px-5 pb-5 pt-16 text-paper">
-              <span className="max-w-[8ch] font-heading text-[1.25rem] font-medium leading-none">
-                Alumni network
-              </span>
-              <span className="rounded-l-lg bg-[rgba(7,7,10,0.78)] px-[0.625rem] py-[0.875rem] font-heading text-[1rem] font-medium leading-none rotate-180 [writing-mode:vertical-rl]">
+              
+              <span className="absolute bottom-5 right-3 rounded-l-lg bg-[rgba(7,7,10,0.78)] px-[0.625rem] py-[0.875rem] font-heading text-[1rem] font-medium leading-none text-paper rotate-180 [writing-mode:vertical-rl]">
                 Innovators
               </span>
             </div>
@@ -91,7 +89,7 @@ export default async function AlumniPage() {
 
           <div className="alumni-hero-panel relative min-w-0 overflow-hidden rounded-[1.5rem] bg-(--surface-2) max-[56rem]:w-full max-[56rem]:shrink-0 max-[56rem]:snap-start max-[56rem]:min-h-[26rem]">
             <Image
-              src="/community/unique.jpeg"
+              src="/brand/IMG_1604.JPG"
               alt="Blockfuse Labs alumnus"
               fill
               priority
@@ -105,7 +103,7 @@ export default async function AlumniPage() {
 
           <div className="alumni-hero-panel relative min-w-0 overflow-hidden rounded-[1.5rem] bg-(--surface-2) max-[56rem]:w-full max-[56rem]:shrink-0 max-[56rem]:snap-start max-[56rem]:min-h-[26rem]">
             <Image
-              src="/community/WAL_2007.jpeg"
+              src="/community/unique.jpeg"
               alt="Blockfuse Labs alumnus"
               fill
               priority

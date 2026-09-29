@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ModalButton } from "@/components/ui/modal-button";
+import { loadEvents } from "@/features/events/api";
+import { excerpt } from "@/features/events/format";
 import { API_URL } from "@/lib/api";
 import { EYEBROW, BTN_SECONDARY, BF_ON_DARK_BTN } from "@/lib/styles";
 
@@ -30,35 +32,96 @@ interface BackendEvent {
   createdAt: string;
 }
 
-export default async function EventsPage() {
-  let backendEvents: BackendEvent[] = [];
+interface EventCard {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  meta: string;
+  kind: string;
+  image: string;
+  upcoming: boolean;
+  time: number;
+}
+
+function cardDate(value: string | null | undefined): string {
+  const time = value ? Date.parse(value) : NaN;
+  if (Number.isNaN(time)) return "";
+  return new Date(time)
+    .toLocaleDateString("en-US", { month: "short", year: "numeric" })
+    .toUpperCase();
+}
+
+/** The API events carry no venue — show where the event lives online. */
+function eventMeta(link: string | null): string {
+  if (!link || link === "#") return "Blockfuse Labs";
+  try {
+    return new URL(link).hostname.replace(/^www\./, "");
+  } catch {
+    return "Blockfuse Labs";
+  }
+}
+
+async function loadBackendEvents(): Promise<BackendEvent[]> {
   try {
     // Fetch-only: content comes from the backend, never a static fallback.
     const res = await fetch(`${API_URL}/events`, {
       cache: "no-store",
       signal: AbortSignal.timeout(5000),
     });
-    const json = await res.json() as { success: boolean; data: BackendEvent[] };
+    const json = (await res.json()) as { success: boolean; data: BackendEvent[] };
     if (json.success && Array.isArray(json.data)) {
-      backendEvents = json.data;
+      return json.data;
     }
   } catch {
-    // Backend unreachable — the archive renders the empty state.
+    // Backend unreachable — the archive renders whatever the other source has.
   }
+  return [];
+}
 
-  const eventDetails = backendEvents.map((event) => ({
-    slug: event.slug,
-    title: event.title,
-    description: event.description,
-    date: new Date(event.date || event.createdAt).toLocaleDateString("en-US", {
-      month: "short",
-      year: "numeric"
-    }).toUpperCase(),
-    meta: event.location || "Online",
-    kind: "Event",
-    image: event.image_url || "/brand/eventbg.JPG",
-    upcoming: new Date(event.date || event.createdAt) > new Date(),
-  }));
+export default async function EventsPage() {
+  const [backendEvents, apiEvents] = await Promise.all([
+    loadBackendEvents(),
+    loadEvents(),
+  ]);
+
+  const formerCards: EventCard[] = backendEvents.map((event) => {
+    const parsed = Date.parse(event.date || event.createdAt);
+    const time = Number.isNaN(parsed) ? 0 : parsed;
+    return {
+      slug: event.slug,
+      title: event.title,
+      description: excerpt(event.description),
+      date: cardDate(event.date || event.createdAt),
+      meta: event.location || "Online",
+      kind: "Event",
+      image: event.image_url || "/brand/eventbg.JPG",
+      upcoming: time > 0 && new Date(time) > new Date(),
+      time,
+    };
+  });
+
+  const previousCards: EventCard[] = apiEvents.map((event) => {
+    const parsed = Date.parse(event.start_date || event.createdAt || "");
+    const time = Number.isNaN(parsed) ? 0 : parsed;
+    return {
+      slug: event.slug,
+      title: event.title,
+      description: excerpt(event.description),
+      date: cardDate(event.start_date || event.createdAt),
+      meta: eventMeta(event.link),
+      kind: "Event",
+      image: event.image || "/brand/eventbg.JPG",
+      upcoming: time > 0 && new Date(time) > new Date(),
+      time,
+    };
+  });
+
+  const seen = new Set(formerCards.map((event) => event.slug));
+  const eventDetails = [
+    ...formerCards,
+    ...previousCards.filter((event) => !seen.has(event.slug)),
+  ].sort((a, b) => b.time - a.time);
 
   return (
     <main>
@@ -177,7 +240,7 @@ export default async function EventsPage() {
         <div className="grid gap-8 border-b border-(--line-strong) pb-12 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <span className={EYEBROW}>The next chapter</span>
-            <h2 className="mt-3 text-3xl font-bold">ProdFest 2026</h2>
+            <h2 className="mt-3 text-3xl font-bold">ProdFest </h2>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-(--muted)">Our flagship demo festival returns. Register your interest to hear about the next edition. Date and venue to be announced.</p>
           </div>
           <ModalButton modal="prodfest">Register interest</ModalButton>
