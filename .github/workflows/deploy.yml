@@ -50,3 +50,8 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: blockfuse-website-v1/
           local-dir: frontend/.next/standalone/
+          # The action skips **/node_modules/** by default, but the standalone
+          # server.js needs the traced node_modules shipped alongside it.
+          exclude: |
+            **/.git*
+            **/.git*/**
