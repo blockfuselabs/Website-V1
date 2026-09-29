@@ -14,9 +14,7 @@ import {
   engagementModels,
 } from "@/features/home/content";
 import { HowItWorksAccordion } from "@/features/home/how-it-works";
-import { EngineerShowcase } from "@/features/engineering/engineer-showcase";
 import { PartnerMarquee } from "@/features/home/partner-marquee";
-import { loadApprovedAlumni } from "@/features/alumni/api";
 import {
   EYEBROW,
   BF_H2,
@@ -65,8 +63,6 @@ const ENGAGEMENT_MEDIA = [
 ] as const;
 
 export default async function Home() {
-  const alumni = await loadApprovedAlumni();
-
   return (
     <main className="relative overflow-hidden">
       {/* ================================================================= */}
@@ -518,41 +514,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      {alumni.length > 0 && (
-        <>
-          <SectionDivider />
-
-          {/* ================================================================= */}
-          {/* TALENT NETWORK — rotating alumni showcase */}
-          {/* ================================================================= */}
-          <section id="talent-network" className="px-5 py-24 sm:px-7 sm:py-32">
-            <div className="mx-auto max-w-280">
-              <div className="mx-auto max-w-184 text-center">
-                <ScrollReveal>
-                  <span className={EYEBROW}>The network</span>
-                </ScrollReveal>
-                <ScrollReveal delay={1}>
-                  <h2 className="mt-4 font-heading text-[clamp(1.875rem,3.6vw,2.75rem)] font-bold tracking-[-0.03em] text-(--page-fg)">
-                    Meet our alumni
-                  </h2>
-                </ScrollReveal>
-                <ScrollReveal delay={2}>
-                  <p className="mx-auto mt-6 max-w-[52ch] text-base leading-[1.7] text-(--muted)">
-                    A sample of the Blockfuse Labs Talent Network. Every
-                    profile here passed the same assessment before an employer
-                    ever saw it.
-                  </p>
-                </ScrollReveal>
-              </div>
-
-              <ScrollReveal className="mt-10" delay={1} threshold={0.08}>
-                <EngineerShowcase alumni={alumni} />
-              </ScrollReveal>
-            </div>
-          </section>
-        </>
-      )}
 
       <SectionDivider />
 

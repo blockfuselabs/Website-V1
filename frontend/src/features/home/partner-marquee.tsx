@@ -26,7 +26,6 @@ const PARTNER_LOGOS: PartnerLogo[] = [
   { name: "AfriVerse", src: "/Blockfuse_Partner_Logos/partners/afriverse.svg", width: 132, height: 32, kind: "word", onDark: true },
   { name: "Quai Network", src: "/Blockfuse_Partner_Logos/partners/quai-symbol.svg", width: 46, height: 46, kind: "mark" },
   { name: "Blip Pay", src: "/Blockfuse_Partner_Logos/partners/blip-pay-symbol.svg", width: 100, height: 100, kind: "mark" },
-  { name: "AyaHQ", src: "/Blockfuse_Partner_Logos/partners/ayahq-symbol-white.svg", width: 28, height: 28, kind: "mark", onDark: true },
   { name: "Starknet Africa", src: "/Blockfuse_Partner_Logos/partners/starknet-africa.jpg", width: 3854, height: 3854, kind: "photo" },
   { name: "Superteam Nigeria", src: "/Blockfuse_Partner_Logos/partners/superteam-nigeria.jpg", width: 584, height: 584, kind: "photo" },
 ];
