@@ -39,6 +39,10 @@ jobs:
         run: |
           cp -r public/ .next/standalone/
           cp -r .next/static/ .next/standalone/.next/static/
+          # Lockfile pins the exact versions CI built with; dev-only
+          # packages aren't needed to run the server.
+          cp package-lock.json .next/standalone/
+          node -e "const f='./.next/standalone/package.json';const p=require(f);delete p.devDependencies;require('fs').writeFileSync(f,JSON.stringify(p,null,2)+'\n')"
           mkdir -p .next/standalone/tmp
           date > .next/standalone/tmp/restart.txt
 
@@ -50,8 +54,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: blockfuse-website-v1/
           local-dir: frontend/.next/standalone/
-          # The action skips **/node_modules/** by default, but the standalone
-          # server.js needs the traced node_modules shipped alongside it.
-          exclude: |
-            **/.git*
-            **/.git*/**
+          # node_modules is left out (the action's default exclude): on this
+          # CloudLinux host it is a symlink into ~/nodevenv managed by cPanel,
+          # so dependencies are installed there with "Run NPM Install".
