@@ -251,7 +251,7 @@ export default async function EventsPage() {
             <div><span className={EYEBROW}>The community in action</span><h2 id="past-events" className="mt-3 scroll-mt-28 text-3xl font-bold">Past events</h2></div>
             <p className="text-sm text-(--muted)">Festivals. Workshops. A shared love of building.</p>
           </div>
-          <div className="grid gap-7 md:grid-cols-2">
+          <div className="grid gap-7 md:grid-cols-3">
             {eventDetails.map((event) => (
               <Link key={event.slug} href={`/community/events/${event.slug}`} className="group overflow-hidden rounded-2xl border border-(--line) bg-(--surface) focus-visible:outline-offset-4 focus-visible:outline-(--accent)">
                 <div className="relative aspect-video overflow-hidden">
