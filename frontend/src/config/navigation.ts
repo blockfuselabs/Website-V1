@@ -76,7 +76,6 @@ export const footerLinks = {
     { label: "Blog", href: "/community/blog" },
     { label: "Alumni", href: "/community/alumni" },
     { label: "ProdFest", href: "/prodfest" },
-    { label: "Open Source", href: "/open-source" },
   ],
   company: [
     { label: "About", href: "/about" },

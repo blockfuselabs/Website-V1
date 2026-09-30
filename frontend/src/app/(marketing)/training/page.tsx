@@ -52,7 +52,7 @@ const ACADEMY_LINK =
 const ACADEMY_VISUAL = "relative min-h-[38rem] max-md:min-h-[34rem]";
 const ACADEMY_PORTRAIT =
   "absolute inset-0 m-0 overflow-hidden bg-(--ink) max-md:inset-[0_0.75rem_0] after:content-[''] after:absolute after:inset-0 after:pointer-events-none after:bg-[linear-gradient(180deg,transparent_58%,rgba(7,7,10,0.72))]";
-const ACADEMY_PORTRAIT_PIC = "object-cover object-[center_18%]";
+const ACADEMY_PORTRAIT_PIC = "object-cover object-[center_19%]";
 const ACADEMY_CAPTION =
   "absolute z-[2] right-6 bottom-6 left-6 flex items-end justify-between gap-4 text-(--paper)";
 const ACADEMY_CAPTION_META =
@@ -149,7 +149,7 @@ export default function TrainingPage() {
           <ScrollReveal className={ACADEMY_VISUAL} delay={2}>
             <figure className={ACADEMY_PORTRAIT}>
               <Image
-                src="/about/WAL_7920.jpeg"
+                src="/about/academy.jpeg"
                 alt="Deborah at Blockfuse Labs Academy"
                 fill
                 priority

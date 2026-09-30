@@ -49,7 +49,7 @@ function SectionDivider() {
 
 const ENGAGEMENT_MEDIA = [
   {
-    src: "/brand/companies1.JPG",
+    src: "/brand/event2.jpeg",
     alt: "A company team in conversation with Blockfuse Labs engineers",
   },
   {

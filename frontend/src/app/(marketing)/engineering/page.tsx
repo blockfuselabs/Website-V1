@@ -10,7 +10,6 @@ import {
   engineeringServices,
   deliveryPrinciples,
   hiringModels,
-  productHighlights,
   engineeringCapabilities,
   processsteps,
 } from "@/features/engineering/content";
@@ -356,47 +355,6 @@ export default function EngineeringPage() {
       </section>
 
       {/* ================================================================= */}
-      {/* 4. WHAT WE'VE BUILT                                               */}
-      {/* ================================================================= */}
-      <section className="px-5 py-24 sm:px-7 sm:py-28">
-        <div className="mx-auto max-w-[1240px]">
-          <ScrollReveal className="max-w-[46rem]">
-            <span className={EYEBROW}>Studio: Proof of work</span>
-            <h2 className={`${BF_H2} mt-4`}>What we&apos;ve built</h2>
-            <p className="mt-5 max-w-[52ch] text-[15px] leading-relaxed text-[var(--muted)]">
-              Client work stays private, but our tools don&apos;t. These are
-              products our own engineers designed, shipped, and still
-              maintain, held to the same standard as anything we deliver.
-            </p>
-          </ScrollReveal>
-
-          <ScrollReveal className="mt-12" delay={1}>
-            <div className={CELLS_3}>
-              {productHighlights.map((product, idx) => (
-                <article key={product.name} className={CELL}>
-                  <div className={CELL_HEAD}>
-                    <span className={CELL_INDEX}>
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <h3 className={CELL_H3}>{product.name}</h3>
-                  <p className={CELL_P}>{product.description}</p>
-                  <p className={CELL_FINE}>{product.proof}</p>
-                </article>
-              ))}
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal className="mt-8" delay={2}>
-            <Link href="/open-source" className={CELL_LINK}>
-              See everything we maintain in the open
-              <span className={CELL_LINK_SPAN} aria-hidden="true">→</span>
-            </Link>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* ================================================================= */}
       {/* 5. HOW WE WORK — violet band                                      */}
       {/* ================================================================= */}
       <section className={`${BAND} px-5 py-24 sm:px-7 sm:py-32`}>
@@ -426,7 +384,7 @@ export default function EngineeringPage() {
             </div>
           </ScrollReveal>
         </div>
-      </section>
+       </section>
 
       {/* ================================================================= */}
       {/* 6. HIRING — evidence, then the specialisms                        */}
@@ -462,7 +420,7 @@ export default function EngineeringPage() {
               <figure className={FRAME}>
                 <div className={FRAME_IMG}>
                   <Image
-                    src="/brand/path1.jpg"
+                    src="/brand/path3.jpg"
                     alt="Blockfuse Labs engineers at work in a training cohort in Jos"
                     fill
                     sizes="(max-width: 1023px) 100vw, 46vw"
@@ -498,27 +456,6 @@ export default function EngineeringPage() {
             </div>
           </ScrollReveal>
 
-          <div className="mt-20 grid items-end gap-8 sm:mt-24 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,34rem)] lg:gap-12">
-            <ScrollReveal>
-              <span className={EYEBROW}>Talent: The network in practice</span>
-              <h2 className={`${BF_H2} mt-4`}>Meet our engineers</h2>
-              <p className="mt-5 max-w-[52ch] text-[15px] leading-relaxed text-[var(--muted)]">
-                A sample of the Blockfuse Labs Talent Network. Every profile here
-                passed the same assessment before an employer ever saw it.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal delay={1}>
-              <div className="relative overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--card)] aspect-[4/3] shadow-[var(--shadow-card)]">
-                <Image
-                  src="/about/engineer.JPG"
-                  alt="Blockfuse Labs Talent Network engineer at work"
-                  fill
-                  sizes="(min-width: 1024px) 34rem, 100vw"
-                  className="object-cover object-[center_20%]"
-                />
-              </div>
-            </ScrollReveal>
-          </div>
         </div>
       </section>
 
@@ -681,41 +618,6 @@ export default function EngineeringPage() {
 
       <SectionDivider />
 
-      {/* ================================================================= */}
-      {/* 9. WHAT EMPLOYERS SAY                                             */}
-      {/* ================================================================= */}
-      {/* <section className="px-5 py-24 sm:px-7 sm:py-28">
-        <div className="mx-auto max-w-[1240px]">
-          <ScrollReveal className="max-w-[46rem]">
-            <span className={EYEBROW}>Talent: Employer endorsements</span>
-            <h2 className={`${BF_H2} mt-4`}>What employers say</h2>
-          </ScrollReveal>
-
-          <div className={`${QUOTE_GRID} mt-12 sm:mt-14`}>
-            {employerTestimonials.map((item, i) => (
-              <ScrollReveal key={item.author} delay={i + 1}>
-                <figure className={QUOTE} data-cursor="QUOTE">
-                  <blockquote>
-                    <p className={QUOTE_TEXT}>{item.quote}</p>
-                  </blockquote>
-                  <figcaption className={QUOTE_CITE}>
-                    <span
-                      className={`${AVATAR} ${AVATAR_TONES[i % AVATAR_TONES.length]}`}
-                      aria-hidden="true"
-                    >
-                      {initials(item.author)}
-                    </span>
-                    <span className={QUOTE_PERSON}>
-                      <strong className={QUOTE_PERSON_NAME}>{item.author}</strong>
-                      <span className={QUOTE_PERSON_ROLE}>{item.role}</span>
-                    </span>
-                  </figcaption>
-                </figure>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* ================================================================= */}
       {/* 10. FINAL CTA                                                      */}

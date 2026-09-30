@@ -82,7 +82,7 @@ export const programPaths: ProgramPath[] = [
     audience:
       "For teams building on EVM or Solana who need production-grade contracts with audit-ready standards.",
     href: "/engineering",
-    image: "/brand/path1.jpg",
+    image: "/about/protocol.jpeg",
   },
   {
     title: "Full-Stack Decentralized Applications",
@@ -92,7 +92,7 @@ export const programPaths: ProgramPath[] = [
     audience:
       "For protocols and startups that need complete dApp delivery from smart contracts to polished frontend.",
     href: "/engineering",
-    image: "/community/DSC00342.JPG",
+    image: "/about/stack.jpeg",
   },
   {
     title: "Applied AI & Web3 Autonomous Systems",
@@ -102,7 +102,7 @@ export const programPaths: ProgramPath[] = [
     audience:
       "For teams looking to embed AI-driven automation and intelligent agents into their Web3 infrastructure.",
     href: "/engineering",
-    image: "/community/image00090.jpeg",
+    image: "/about/applied.jpeg",
   },
   {
     title: "Dedicated Web3 Talent Pods",

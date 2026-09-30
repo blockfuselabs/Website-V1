@@ -77,14 +77,6 @@ const showcaseItems = [
     href: "/community/alumni",
     cta: "View Alumni",
   },
-  {
-    num: "03",
-    tag: "Ecosystem Impact",
-    title: "Open Source",
-    desc: "Active contributions to the underlying infrastructure and tooling of the Web3 ecosystem.",
-    href: "/open-source",
-    cta: "View Contributions",
-  },
 ];
 
 function SectionDivider() {
@@ -168,7 +160,7 @@ export default function CommunityPage() {
       {/* ================================================================= */}
       <section className="px-5 py-24 sm:px-7 sm:py-28">
         <div className="mx-auto max-w-[1240px]">
-          <div className="grid gap-4 lg:grid-cols-3">
+          <div className="grid gap-4 lg:grid-cols-2">
             {showcaseItems.map((item) => (
               <ScrollReveal key={item.num}>
                 <TiltCard className={`${SURFACE_CARD} p-8 h-full flex flex-col justify-between`}>
