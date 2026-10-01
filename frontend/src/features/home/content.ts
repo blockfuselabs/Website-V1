@@ -82,7 +82,7 @@ export const programPaths: ProgramPath[] = [
     audience:
       "For teams building on EVM or Solana who need production-grade contracts with audit-ready standards.",
     href: "/engineering",
-    image: "/about/protocol.jpeg",
+    image: "/brand/path3.jpg",
   },
   {
     title: "Full-Stack Decentralized Applications",
