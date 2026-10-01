@@ -112,7 +112,7 @@ export const programPaths: ProgramPath[] = [
     audience:
       "For companies that need proven Web3 and AI engineers embedded into their team without the hiring overhead.",
     href: "/hire-engineers",
-    image: "/brand/path4.jpg",
+    image: "/brand/dedicated.jpeg",
   },
 ];
 
