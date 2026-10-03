@@ -42,6 +42,7 @@ export interface DetailedProgram {
   id: string;
   title: string;
   description: string;
+  curriculumSummary: string;
   topics: string[];
   outcome: string;
   ctaText: string;
@@ -53,6 +54,8 @@ export const detailedPrograms: DetailedProgram[] = [
     title: "Basic Track",
     description:
       "Your first working foundation: core programming, the web, and the tools professional engineers use every day.",
+    curriculumSummary:
+      "Learn Linux and the command line, Git and GitHub, semantic HTML, CSS fundamentals, and vanilla JavaScript. You will finish by building and presenting a responsive, interactive landing page.",
     topics: [
       "Programming fundamentals & problem solving",
       "HTML, CSS and JavaScript",
@@ -70,6 +73,8 @@ export const detailedPrograms: DetailedProgram[] = [
     title: "Intermediate Track",
     description:
       "For people who know the basics and want to build proper software: JavaScript, modern frontend, and your first backend.",
+    curriculumSummary:
+      "Build modern interfaces with Tailwind and React, deepen your JavaScript with asynchronous programming and APIs, then learn Node.js, Python fundamentals, and practical AI-assisted engineering workflows.",
     topics: [
       "JavaScript & TypeScript fundamentals",
       "Modern frontend with React",
@@ -87,6 +92,8 @@ export const detailedPrograms: DetailedProgram[] = [
     title: "Advanced Track",
     description:
       "Full-stack engineering done properly: structured backends, production frontends, and the engineering habits that scale.",
+    curriculumSummary:
+      "Develop production-ready applications with TypeScript, Node.js, Next.js, PostgreSQL, MongoDB, Redis, Docker, automated testing, and CI/CD. You will also build a Python AI agent using tools and retrieval.",
     topics: [
       "Full-stack architecture (Next.js, Node)",
       "Relational databases & data modelling",
@@ -104,6 +111,8 @@ export const detailedPrograms: DetailedProgram[] = [
     title: "Professional Track",
     description:
       "Built for working developers levelling up: distributed systems, cloud, security, and AI-assisted delivery at production standards.",
+    curriculumSummary:
+      "Advance with Go, concurrency, APIs, databases, Redis, messaging, microservices, observability, system design, clean architecture, technical interviews, consulting, and production delivery.",
     topics: [
       "Microservices & distributed systems",
       "Cloud infrastructure (AWS, containers)",
@@ -121,6 +130,8 @@ export const detailedPrograms: DetailedProgram[] = [
     title: "Full-Program Bundle",
     description:
       "The complete journey: Basic, Intermediate, Advanced and Professional in one continuous program, built for a serious career jump.",
+    curriculumSummary:
+      "Move through the Basic, Intermediate, Advanced, and Professional tracks in sequence, progressing from web fundamentals to production full-stack systems, distributed architecture, and career readiness.",
     topics: [
       "All four track curriculums, sequenced",
       "A guided capstone for each stage",
@@ -138,6 +149,7 @@ export const detailedPrograms: DetailedProgram[] = [
     title: "Blockchain Engineering Track",
     description:
       "The program Blockfuse Labs became known for: smart contracts, security, and decentralized applications you can defend in review.",
+    curriculumSummary: "Curriculum coming soon.",
     topics: [
       "Blockchain & distributed-systems fundamentals",
       "Smart contract development (Solidity)",

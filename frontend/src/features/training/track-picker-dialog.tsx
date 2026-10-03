@@ -44,6 +44,10 @@ const TRACK_NAME =
 const TRACK_META =
   "font-mono text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-(--dim)";
 const TRACK_P = "mt-1.5 max-w-[54ch] text-[0.875rem] leading-[1.6] text-(--muted)";
+const TRACK_SUMMARY_LABEL =
+  "mt-4 font-mono text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-(--dim)";
+const TRACK_SUMMARY =
+  "mt-1.5 max-w-[54ch] text-[0.875rem] leading-[1.6] text-(--page-fg)";
 const TRACK_ACTIONS = "mt-1 flex flex-wrap items-center gap-x-5 gap-y-3";
 
 /** Duration and fee for one track. The training page has no fees to show and
@@ -185,13 +189,16 @@ export function TrackPickerDialog({
         >
           <header className={HEADER}>
             <h2 id={titleId} className={HEADER_TITLE}>
-              Choose your track
+              Curriculum
             </h2>
             <p id={hintId} className={HEADER_HINT}>
               {group.pickerHint}
             </p>
-            <a href="/contact?intent=academy" className={`group ${HEADER_ASK}`}>
-              Not sure which one fits? Talk to an advisor
+            <a
+              href="mailto:admin@blockfuselabs.xyz"
+              className={`group ${HEADER_ASK}`}
+            >
+              Talk to an advisor
               <span className={HEADER_ASK_SPAN} aria-hidden="true">
                 →
               </span>
@@ -233,6 +240,8 @@ export function TrackPickerDialog({
                   <h3 className={TRACK_NAME}>{track.title}</h3>
                   {feeLine && <p className={TRACK_META}>{feeLine}</p>}
                   <p className={TRACK_P}>{track.description}</p>
+                  <p className={TRACK_SUMMARY_LABEL}>Track summary</p>
+                  <p className={TRACK_SUMMARY}>{track.curriculumSummary}</p>
 
                   <div className={TRACK_ACTIONS}>
                     <button

@@ -2,9 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { BTN_PRIMARY } from "@/lib/styles";
-import { ModalButton } from "@/components/ui/modal-button";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { detailedPrograms, programGroups } from "./content";
 import { TrackPickerDialog } from "./track-picker-dialog";
@@ -49,14 +47,14 @@ const ADVISOR_LINK_SPAN =
   "transition-[translate] duration-200 ease-out group-hover:translate-x-[0.3rem]";
 
 /** `?intent=academy` for a whole program, `?program=` for one specific track. */
-function AdvisorLink({ href }: { href: string }) {
+function AdvisorLink() {
   return (
-    <Link href={href} className={ADVISOR_LINK}>
+    <a href="mailto:admin@blockfuselabs.xyz" className={ADVISOR_LINK}>
       Talk to an advisor
       <span className={ADVISOR_LINK_SPAN} aria-hidden="true">
         →
       </span>
-    </Link>
+    </a>
   );
 }
 
@@ -114,7 +112,7 @@ function GroupedProgramCard({
               onClick={() => onPick(group, tracks)}
               className={BTN_PRIMARY}
             >
-              <span>Choose a track</span>
+              <span>Apply for this track</span>
               <svg
                 className="h-4 w-4 transition-transform duration-250 ease group-hover:translate-x-0.75"
                 fill="none"
@@ -130,7 +128,7 @@ function GroupedProgramCard({
                 />
               </svg>
             </button>
-            <AdvisorLink href="/contact?intent=academy" />
+            <AdvisorLink />
           </div>
         </div>
       </article>
@@ -144,11 +142,13 @@ function StandaloneProgramCard({
   index,
   track,
   fee,
+  onPick,
 }: {
   group: ProgramGroup;
   index: number;
   track: DetailedProgram;
   fee?: string;
+  onPick: (group: ProgramGroup, tracks: DetailedProgram[]) => void;
 }) {
   return (
     <ScrollReveal delay={index < 2 ? index + 1 : 3} threshold={0.08}>
@@ -161,10 +161,28 @@ function StandaloneProgramCard({
           {fee && <p className={PROGRAM_FEE}>{fee}</p>}
 
           <div className={PROGRAM_ACTIONS}>
-            <ModalButton modal="program" prefill={{ Track: track.title }}>
-              Apply for this track
-            </ModalButton>
-            <AdvisorLink href={`/contact?program=${track.id}`} />
+            <button
+              type="button"
+              onClick={() => onPick(group, [track])}
+              className={BTN_PRIMARY}
+            >
+              <span>Apply for this track</span>
+              <svg
+                className="h-4 w-4 transition-transform duration-250 ease group-hover:translate-x-0.75"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </button>
+            <AdvisorLink />
           </div>
         </div>
       </article>
@@ -213,6 +231,7 @@ export function ProgramCards({
               index={index}
               track={tracks[0]}
               fee={groupFees?.[group.id]}
+              onPick={(g, t) => setPicker({ group: g, tracks: t })}
             />
           );
         })}
