@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 
@@ -14,6 +15,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="relative isolate z-[2] flex min-h-screen flex-col">
+      <AnnouncementBar />
       <Header />
       <div className="flex-1">{children}</div>
       <Footer />
