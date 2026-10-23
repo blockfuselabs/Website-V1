@@ -1,6 +1,6 @@
 "use client";
 
-import { Loader2 } from "lucide-react";
+import { Loader2, Mail } from "lucide-react";
 import React, { useState } from "react";
 import { DataTable, SubmissionDetail, formatDate, type DataColumn } from "@/components/admin/data-table";
 import { AdminHeader } from "@/components/admin/admin-header";
@@ -187,6 +187,44 @@ const COLUMNS: Record<string, DataColumn<Record<string, unknown>>[]> = {
   ],
 };
 
+function PaymentReminderButton({ row }: { row: Record<string, unknown> }) {
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const eligible = row.can_send_payment_reminder === true;
+
+  const handleSend = async () => {
+    if (sending || sent || !eligible) return;
+    setSending(true);
+    setError(null);
+    try {
+      await postJson(`/applications/${row.id}/payment-reminder`, {});
+      setSent(true);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Failed to send reminder.");
+    } finally {
+      setSending(false);
+    }
+  };
+
+  return (
+    <div className="max-w-xs">
+      <button
+        type="button"
+        onClick={handleSend}
+        disabled={!eligible || sending || sent}
+        title={eligible ? `Email ${String(row.email)}` : String(row.payment_reminder_reason ?? "Payment reminder unavailable")}
+        className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-(--line-strong) px-3 py-1 text-xs font-semibold text-(--page-fg) transition-colors hover:border-(--accent) disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        {sending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Mail className="h-3.5 w-3.5" />}
+        {sending ? "Sending…" : sent ? "Reminder sent" : "Send payment reminder"}
+      </button>
+      {sent && <p role="status" className="mt-1 text-xs text-emerald-400">Sent to {String(row.email)}.</p>}
+      {error && <p role="alert" className="mt-1 text-xs text-[#fca5a5]">{error}</p>}
+    </div>
+  );
+}
+
 function BroadcastPanel({ subscribers }: { subscribers: Record<string, unknown>[] }) {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
@@ -316,6 +354,13 @@ export function InboxView({ kind }: { kind: string }) {
 
   const columnsWithActions: DataColumn<Record<string, unknown>>[] = [
     ...(COLUMNS[active.key] ?? []),
+    ...(active.key === "applications"
+      ? [{
+          key: "payment_reminder",
+          label: "Payment reminder",
+          render: (r: Record<string, unknown>) => <PaymentReminderButton row={r} />,
+        }]
+      : []),
     ...(isAlumni
       ? [
           {
