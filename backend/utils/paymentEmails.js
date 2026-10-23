@@ -30,6 +30,25 @@ const sendStatusLinkEmail = async ({ name, email, track, statusUrl }) => {
   });
 };
 
+/** Sent on demand from the admin applications inbox. */
+const sendPaymentReminderEmail = async ({ name, email, track, amount, installment, statusUrl }) => {
+  return sendConfirmationEmail({
+    to: email,
+    subject: 'Reminder: complete your program payment | Blockfuse Labs',
+    html: wrapEmail({
+      eyebrow: 'Payment reminder',
+      title: 'Complete your payment to secure your seat',
+      bodyHtml: `<p style="margin:0 0 12px;">Hi ${escHtml(name)},</p>
+<p style="margin:0 0 12px;">This is a friendly reminder to complete your payment for <em>${escHtml(track)}</em>. We have not yet verified a payment for your application.</p>
+<p style="margin:0 0 12px;">${installment ? 'Your first installment' : 'Your program fee'} is <strong>${formatNaira(amount)}</strong>. Open your personal payment page for the bank details and upload your transfer receipt after paying.</p>
+<p style="margin:0 0 12px;">Continue your payment here:<br><a href="${escHtml(statusUrl)}" style="color:#A544D2;word-break:break-all;">${escHtml(statusUrl)}</a></p>
+<p style="margin:0 0 12px;">If you have already transferred the money, please upload your receipt so we can verify it. You do not need to pay again.</p>
+<p style="margin:0 0 4px;font-size:13px;color:#6B6572;">Payment is required to secure your spot. Fees are non-refundable.</p>`,
+      button: { label: 'Continue payment', url: statusUrl },
+    }),
+  });
+};
+
 /**
  * Emails sent when an applicant uploads proof of a bank transfer:
  *  - the applicant is told it is awaiting manual verification,
@@ -198,6 +217,7 @@ ${reason}
 
 module.exports = {
   sendStatusLinkEmail,
+  sendPaymentReminderEmail,
   sendPaymentSubmittedEmails,
   sendPaymentVerifiedEmail,
   sendPaymentRejectedEmail,

@@ -12,6 +12,7 @@ const status = statusController(ProgramApplication, 'Application');
 
 router.post('/', upload.single('resume'), validate(applicationSchema), applicationController.submit);
 router.get('/', authMiddleware, applicationController.getAll);
+router.post('/:id/payment-reminder', authMiddleware, applicationController.sendPaymentReminder);
 router.patch('/:id', authMiddleware, status.updateStatus);
 
 router.delete('/:id', authMiddleware, applicationController.remove);
